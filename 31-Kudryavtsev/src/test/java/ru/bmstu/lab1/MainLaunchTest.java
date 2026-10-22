@@ -63,6 +63,10 @@ class MainLaunchTest {
                 arguments("task_2", "4\n9 -2 7 -2\n-2\n", "1"),
                 arguments("task_3", "5\n4 -2 4 0 4\n4\n", "3"),
                 arguments("task_4", "5\n7 2 7 3 7\n7\n", "0 2 4"),
+                arguments("task_5", "5\n1 2 3 4 5\n", "9"),
+                arguments("task_6", "3\n2 5 8\n", "1"),
+                arguments("task_7", "5\n3 9 1 7 5\n", "7"),
+                arguments("task_8", "6\n3 -2 0 1 -5 4\n", "3 1 4" + System.lineSeparator() + "-2 -5"),
                 arguments("task_13", "4\n4 -2 0 7\n", "-2 0 4 7"),
                 arguments("task_49", "2 3\n1 2 3\n4 5 6\n", "6 15"),
                 arguments("task_54", "3\n1 2 3\n4 5 6\n7 8 9\n", "15"));

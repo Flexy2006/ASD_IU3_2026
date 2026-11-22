@@ -1,6 +1,6 @@
 # Бенчмарки ЛР2
 
-Дата: 2026-11-21.
+Дата: 2026-11-22.
 
 Среда: OpenJDK 64-Bit Server VM 25.0.4.1; Windows 11 amd64; CPU: Intel64 Family 6 Model 151 Stepping 2, GenuineIntel.
 
@@ -12,18 +12,18 @@
 
 | Структура | Операция | N элементов | Среднее время (мс) | Примечание |
 |---|---|---:|---:|---|
-| PriorityQueueCustom | add + poll | 10000 | 2.058 | min-heap; выделено 132358 байт |
-| java.util.PriorityQueue | add + poll | 10000 | 2.002 | min-heap; выделено 157896 байт |
-| HashMapCustom | put + get + remove | 10000 | 11.002 | строковые ключи; выделено 262416 байт |
-| java.util.HashMap | put + get + remove | 10000 | 1.272 | строковые ключи; выделено 451256 байт |
-| PriorityQueueCustom | add + poll | 50000 | 14.231 | min-heap; выделено 524456 байт |
-| java.util.PriorityQueue | add + poll | 50000 | 12.516 | min-heap; выделено 799672 байт |
-| HashMapCustom | put + get + remove | 50000 | 155.780 | строковые ключи; выделено 2097520 байт |
-| java.util.HashMap | put + get + remove | 50000 | 4.664 | строковые ключи; выделено 2648808 байт |
-| PriorityQueueCustom | add + poll | 100000 | 68.782 | min-heap; выделено 1048760 байт |
-| java.util.PriorityQueue | add + poll | 100000 | 44.579 | min-heap; выделено 1799336 байт |
-| HashMapCustom | put + get + remove | 100000 | 293.431 | строковые ключи; выделено 4194704 байт |
-| java.util.HashMap | put + get + remove | 100000 | 12.003 | строковые ключи; выделено 5297400 байт |
+| PriorityQueueCustom | add + poll | 10000 | 1.795 | min-heap; выделено 132358 байт |
+| java.util.PriorityQueue | add + poll | 10000 | 1.619 | min-heap; выделено 157896 байт |
+| HashMapCustom | put + get + remove | 10000 | 9.188 | строковые ключи; выделено 262416 байт |
+| java.util.HashMap | put + get + remove | 10000 | 0.866 | строковые ключи; выделено 451256 байт |
+| PriorityQueueCustom | add + poll | 50000 | 12.726 | min-heap; выделено 524456 байт |
+| java.util.PriorityQueue | add + poll | 50000 | 9.424 | min-heap; выделено 799672 байт |
+| HashMapCustom | put + get + remove | 50000 | 154.347 | строковые ключи; выделено 2097520 байт |
+| java.util.HashMap | put + get + remove | 50000 | 4.100 | строковые ключи; выделено 2648808 байт |
+| PriorityQueueCustom | add + poll | 100000 | 34.077 | min-heap; выделено 1048760 байт |
+| java.util.PriorityQueue | add + poll | 100000 | 37.069 | min-heap; выделено 1799336 байт |
+| HashMapCustom | put + get + remove | 100000 | 359.869 | строковые ключи; выделено 4194704 байт |
+| java.util.HashMap | put + get + remove | 100000 | 6.727 | строковые ключи; выделено 5297400 байт |
 
 ## 1B — min-heap и max-heap
 
@@ -31,8 +31,8 @@
 
 | Структура | Операция | N элементов | Среднее время (мс) | Примечание |
 |---|---|---:|---:|---|
-| PriorityQueueCustom | add + poll | 100000 | 69.539 | min: naturalOrder; выделено 1048790 байт |
-| PriorityQueueCustom | add + poll | 100000 | 68.022 | max: reverseOrder; выделено 1048784 байт |
+| PriorityQueueCustom | add + poll | 100000 | 52.167 | min: naturalOrder; выделено 1048790 байт |
+| PriorityQueueCustom | add + poll | 100000 | 55.464 | max: reverseOrder; выделено 1048784 байт |
 
 Оба режима выполняют одинаковые виды действий и имеют одинаковую асимптотику. Число сравнений и обменов зависит от порядка значений; разницу также создают ветвления, JIT и GC.
 
@@ -40,8 +40,8 @@
 
 | Структура | Операция | N элементов | Среднее время (мс) | Примечание |
 |---|---|---:|---:|---|
-| HashMapCustom | put + get + remove | 10000 | 8.002 | обычный hashCode строки; выделено 262416 байт |
-| HashMapCustom | put + get + remove | 10000 | 1480.573 | CollisionKey: hashCode = 1; выделено 262416 байт |
+| HashMapCustom | put + get + remove | 10000 | 10.222 | обычный hashCode строки; выделено 262416 байт |
+| HashMapCustom | put + get + remove | 10000 | 1806.780 | CollisionKey: hashCode = 1; выделено 262416 байт |
 
 Подробное объяснение деградации — в README.md.
 
@@ -49,8 +49,8 @@
 
 | Структура | Операция | N элементов | Среднее время (мс) | Примечание |
 |---|---|---:|---:|---|
-| Собственная куча | topK | 1000000 | 3.713 | k = 100; выделено 2115 байт |
-| Collections.sort | копия + сортировка + последние k | 1000000 | 410.861 | k = 100; выделено 8097728 байт |
+| Собственная куча | topK | 1000000 | 3.225 | k = 100; выделено 2118 байт |
+| Collections.sort | копия + сортировка + последние k | 1000000 | 461.544 | k = 100; выделено 8097728 байт |
 
 ## 3C — уникальные элементы: время и память
 
@@ -58,15 +58,15 @@
 
 | Структура | Операция | N элементов | Среднее время (мс) | Примечание |
 |---|---|---:|---:|---|
-| Собственная таблица + список | distinct | 10000 | 3.795 | u = 4298; выделено 196976 байт |
-| LinkedHashSet | new LinkedHashSet<>(items) | 10000 | 0.570 | u = 4298; выделено 237584 байт |
-| LinkedHashSet + ArrayList | distinct в List | 10000 | 0.701 | u = 4298; выделено 272024 байт |
-| Собственная таблица + список | distinct | 50000 | 3.572 | u = 21585; выделено 786896 байт |
-| LinkedHashSet | new LinkedHashSet<>(items) | 50000 | 2.424 | u = 21585; выделено 1387784 байт |
-| LinkedHashSet + ArrayList | distinct в List | 50000 | 1.406 | u = 21585; выделено 1560528 байт |
-| Собственная таблица + список | distinct | 100000 | 9.278 | u = 43174; выделено 1573344 байт |
-| LinkedHashSet | new LinkedHashSet<>(items) | 100000 | 4.147 | u = 43174; выделено 2775632 байт |
-| LinkedHashSet + ArrayList | distinct в List | 100000 | 3.510 | u = 43174; выделено 3121080 байт |
+| Собственная таблица + список | distinct | 10000 | 3.365 | u = 4298; выделено 196992 байт |
+| LinkedHashSet | new LinkedHashSet<>(items) | 10000 | 0.439 | u = 4298; выделено 237584 байт |
+| LinkedHashSet + ArrayList | distinct в List | 10000 | 0.314 | u = 4298; выделено 272024 байт |
+| Собственная таблица + список | distinct | 50000 | 3.380 | u = 21585; выделено 786912 байт |
+| LinkedHashSet | new LinkedHashSet<>(items) | 50000 | 1.203 | u = 21585; выделено 1387784 байт |
+| LinkedHashSet + ArrayList | distinct в List | 50000 | 1.057 | u = 21585; выделено 1560528 байт |
+| Собственная таблица + список | distinct | 100000 | 7.517 | u = 43174; выделено 1573360 байт |
+| LinkedHashSet | new LinkedHashSet<>(items) | 100000 | 4.278 | u = 43174; выделено 2775632 байт |
+| LinkedHashSet + ArrayList | distinct в List | 100000 | 2.957 | u = 43174; выделено 3121080 байт |
 
 ## Выводы
 
